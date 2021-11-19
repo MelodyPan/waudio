@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="汽車影音、智能車載、現階段、銷售、代理商、汽車影音製造" />
+  <meta name="keywords" content="汽車影音、智能車載、現階段、銷售、代理商、汽車影音製造" /> -->
+  <!-- <meta name="author" content="" /> -->
+  <!-- <title>
+    waudio - 安卓機 智能車載
+  </title> -->
+
+  <!-- Favicon-->
+  <!-- <link rel="icon" type="image/x-icon" href="assets/icon.ico" /> -->
+  <!-- Font Awesome icons (free version)-->
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+  <!-- Google fonts-->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+</head>
+
+<body id="page-top">
+  <!-- Masthead-->
+  <header class="masthead">
+    <div class="container">
+      <!-- <div class="masthead-heading">清晰記錄，您的旅程</div> -->
+      <!-- <div class="masthead-heading text-uppercase">Nice To Meet You</div> -->
+    </div>
+  </header>
+  <!-- Portfolio Grid-->
+  <section class="page-section bg-light" id="portfolio">
+    <div class="container">
+      <!-- <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Portfolio</h2>
+                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                </div> -->
+      <div class="row">
+        <div class="col-lg-4 col-sm-6 mb-4" *ngFor="let item of productList; let i = index ">
+          <!-- Portfolio item 1-->
+          <div class="portfolio-item">
+            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal{{item.id}}">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">查看明細</div>
+              </div>
+              <img class="img-fluid" src="assets/img/portfolio/{{item.id}}.jpg" alt="{{item.name}}" />
+            </a>
+            <div class="portfolio-caption">
+              <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal{{item.id}}">
+                <div class="portfolio-caption-heading">{{item.name}}</div>
+              </a>
+              <div class="portfolio-caption-subheading"
+                style="color:red;--bs-text-opacity: 1;font-style:normal;font-weight: bolder;">
+                建議售價：<span [innerHTML]="item.price"></span> <span *ngIf="item.price != '訂製依實際車款配置報價'">(不含安裝工資)</span>
+              </div>
+              <div class="portfolio-caption-subheading text-muted" [innerHTML]="item.intro"
+                style='font-weight: bolder; color:black;'></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="page-section" id="about">
+    <div class="container">
+      <div class="text-center">
+        <h3 class="section-heading text-uppercase">公司名稱: 鑫萬金企業社</h3>
+        <h3 class="section-heading text-uppercase">公司地址: 新北市樹林區中山路二段152號</h3>
+        <h3 class="section-heading text-uppercase">公司電話: (02)8675-1685</h3>
+        <h3 class="section-heading text-uppercase">洽詢專線: 0906-916245</h3>
+        <h3 class="section-heading">洽詢LINE@: @w-audio</h3>
+        <h3 class="section-heading text-uppercase">QR CODE: <img src="assets/img/QRCODE.jpg" alt="鑫萬金企業社QRCODE"
+            width="15%"></h3>
+      </div>
+    </div>
+  </section>
+  <!-- Footer-->
+  <footer class="footer py-4">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-4 text-lg-start"></div>
+        <div class="col-lg-4 my-3 my-lg-0">
+        </div>
+        <div class="col-lg-4 text-lg-end">
+          Copyright &copy; 2021 waudio 版權所有
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- Portfolio Modals-->
+  <div *ngFor="let item of productList; let i = index ">
+    <div class="portfolio-modal modal fade" id="portfolioModal{{item.id}}" tabindex="-1" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content" style="margin-bottom: 0;">
+          <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" />
+          </div>
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-8">
+                <div class="modal-body">
+                  <!-- Project details-->
+                  <h3 class="text-uppercase">{{item.name}}</h3>
+                  <!-- <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p> -->
+                  <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/{{item.id}}.jpg" alt="..."
+                    data-bs-dismiss="modal" />
+                  <!-- <p>{{item.describe}}</p> -->
+                  <div style="margin-bottom: 2rem;">
+                    <div class="row" *ngIf="item.describelist">
+                      <ul *ngFor="let describeitem of item.describelist; let j = index " style="list-style-type:none;">
+                        <li>● <span [ngStyle]="{'font-weight':describeitem.point ? 'bolder' : '' }"
+                            [ngStyle]="{'background-color':describeitem.point ? 'yellow' : '' }">{{describeitem.data}}</span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="row" *ngIf="item.adaptcar">
+                      <div class="row" style="font-weight: bolder;">
+                        <div class="col">年份</div>
+                        <div class="col">品牌</div>
+                        <div class="col">車款</div>
+                      </div>
+                      <div class="row" *ngFor="let caritem of item.adaptcar; let k = index ">
+                        <div class="col"
+                          [ngStyle]="{'border-bottom-style': k === item.adaptcar.length-1 ? '' : 'groove'}">
+                          {{caritem.year}}</div>
+                        <div class="col"
+                          [ngStyle]="{'border-bottom-style': k === item.adaptcar.length-1 ? '' : 'groove'}">
+                          {{caritem.brand}}</div>
+                        <div class="col"
+                          [ngStyle]="{'border-bottom-style': k === item.adaptcar.length-1 ? '' : 'groove'}">
+                          {{caritem.model}}</div>
+                      </div>
+                    </div>
+                    <div class="row" style="margin-top: 2rem;" *ngIf="item.productparameter"
+                      style="border-style: groove;">
+                      <div style="text-align: left;border-bottom-style: groove; margin-left: 0px;">【產品技術參數】</div>
+                      <div class="row" *ngFor="let caritem of item.productparameter; let m = index ">
+                        <div class="col" style="border-right-style: groove; margin-left: 0px;">{{caritem.tile}}</div>
+                        <div class="col" style="text-align: left;">{{caritem.value}}</div>
+                      </div>
+                    </div>
+
+                    <div [innerHTML]="item.info" style="color:red;margin-top: 2rem;"></div>
+                  </div>
+                  <button class="btn btn-primary text-uppercase" data-bs-dismiss="modal" type="button">
+                    <i class="fas fa-times me-1"></i>關閉
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+<router-outlet></router-outlet>
